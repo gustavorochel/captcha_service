@@ -1,0 +1,15 @@
+version: "3.3"
+services:
+  captcha_api:
+    image: tiangolo/uvicorn-gunicorn-fastapi:python3.8
+    container_name: captcha_api
+    hostname: captcha_api
+    restart: unless-stopped
+    environment:
+      - SERVER_PORT=4567
+    ports:
+      - 4567:4567
+    volumes:
+      - ./:/app
+    working_dir: '/app'
+    entrypoint: "./docker-init.sh"
